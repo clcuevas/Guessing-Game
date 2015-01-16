@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
 /* This is a Global variable that will control the looping of 
 the game. */
 var yourLatestGuess,
@@ -10,26 +10,21 @@ game depending on the user's input. */
 var theGame = function() {
 	//3 variables assigned that are local to this function
 	var userGuess,
-		answer = 3,
-		message;
+			afterGuess = true;
+			answer = 3;
 
 	//This checks to see if the user's input equals the answer
 	if (yourLatestGuess == answer) {
-		retry = false;
-		message = alert("Correct.");
-	}
-	//This checks whether the user wants to quit the game
-	else if (yourLatestGuess == 'q') {
-		retry = false;
-		message = alert("Sorry to see you go.");
-	}
-	//This displays if user input is incorrect but want to try again
+		alert("Correct.");
+		return retry = false;
+	} 
 	else {
-		message = prompt("Wrong. Keep guessing until you get the answer or enter 'q' to quit.");
+		afterGuess = prompt("Wrong. Keep guessing until you get the answer or enter 'q' to quit.");
+		if (afterGuess == 'q') {
+			retry = false;
+			alert("Sorry to see you go.");
+		}
 	}
-
-	return message;
-
 };
 
 //This is the initial prompt the user sees upon start of game
@@ -37,8 +32,8 @@ yourLatestGuess = prompt("Can you guess how many holes are in a bowling ball?");
 
 /* The function theGame will keep getting prompted to the user as long as he/she continues to not get the answer
 and does not input 'q' to quit. */
-while(retry == true) {
-	yourLatestGuess = prompt(theGame());
+while(retry) {
+	theGame();
 }
 
 </script>
