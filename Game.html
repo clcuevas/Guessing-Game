@@ -1,15 +1,39 @@
 <script>
-var guess,
+/* This is a Global variable that will control the looping of 
+the game. */
+var yourLatestGuess,
+		retry = true;
 
-guess = prompt ("How many holes in a bowling ball");
+/* This function was created to list the tasks needed to perform
+the guessing game. There are three scenarios that can occur in the
+game depending on the user's input. */
+var theGame = function() {
+	//3 variables assigned that are local to this function
+	var userGuess,
+			afterGuess = true;
+			answer = 3;
 
-if(guess==3)
-{
-	alert("Correct");
+	//This checks to see if the user's input equals the answer
+	if (yourLatestGuess == answer) {
+		alert("Correct.");
+		return retry = false;
+	} 
+	else {
+		afterGuess = prompt("Wrong. Keep guessing until you get the answer or enter 'q' to quit.");
+		if (afterGuess == 'q') {
+			retry = false;
+			alert("Sorry to see you go.");
+		}
+	}
+};
+
+//This is the initial prompt the user sees upon start of game
+yourLatestGuess = prompt("Can you guess how many holes are in a bowling ball?");
+
+/* The function theGame will keep getting prompted to the user as long as he/she continues to not get the answer
+and does not input 'q' to quit. */
+while(retry) {
+	theGame();
 }
-else
 
-{
-	alert("Wrong");
-}
 </script>
